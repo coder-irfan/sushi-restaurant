@@ -1,14 +1,46 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
+import React, { Suspense, lazy } from "react";
+import { Routes, Route } from "react-router-dom";
+const AdminLogin = lazy(() => import ("./pages/AdminLogin"));
+import Loader from "./pages/Loader";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import ForgotPassword from "../../frontend/src/pages/ForgotPassword";
+import ResetPassword from "../../frontend/src/pages/ResetPassword";
+import Dashboard from "./components/Dashboard";
+import { useAdminAuth } from "./context/AdminAuthContext";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const { loading } = useAdminAuth();
+
+  if (loading) {
+    return (
+      <Loader />
+    )
+  }
+
   return (
     <>
-      <Navbar />
-      <hr />
-      <div className="flex">
-        <Sidebar />
+      <div className="">
+        <Routes>
+          <Route path="/admin/login" element={<Suspense fallback={<Loader />}> <AdminLogin/> </Suspense>}></Route>
+          <Route path="/admin/forgotpassword" element={<Suspense fallback={<Loader />}> <ForgotPassword isAdmin={true} /> </Suspense>}></Route>
+          <Route path="/admin/resetpassword/:token" element={<Suspense fallback={<Loader />}> <ResetPassword /> </Suspense>} />
+          <Route path="/admin/dashboard/*" element={<Suspense fallback={<Loader />}><ProtectedRoutes> <Dashboard /> </ProtectedRoutes> </Suspense>} />
+        </Routes>
+
+        <ToastContainer 
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          transition={Slide}
+        />
       </div>
     </>
   )

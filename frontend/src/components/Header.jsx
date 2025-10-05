@@ -19,7 +19,7 @@ function Header({ scrolled, cartItems, isCartOpen, setIsCartOpen }) {
   const [isUserOpen, setIsUserOpen] = useState(false);
   const menuRef = useRef(null);
 
-  // By clicking usre icon it opens and closes the menu from it and outside of it
+  // By clicking user icon it opens and closes the menu from it and outside of it
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -108,7 +108,7 @@ function Header({ scrolled, cartItems, isCartOpen, setIsCartOpen }) {
                       />
 
                       {isUserOpen  && (
-                        <div className="absolute right-10 mt-6  bg-deepGray shadow-xl shadow-darkCharcoal rounded-lg  z-10">
+                        <div className="absolute right-10 mt-6  bg-deepGray shadow-xl shadow-darkCharcoal rounded-lg z-10">
                           <Link to="/myorder">
                             <button className="flex items-center gap-6 p-4 hover:text-softBeigeYellow transition-colors duration-300">
                               My orders

@@ -18,6 +18,21 @@ export default {
         greatVibes: "Great Vibes",
         cinzel: "Cinzel",
       },
+      animation: {
+        bounce1: "bounce 1s infinite 0.1s",
+        bounce2: "bounce 1s infinite 0.2s",
+        bounce3: "bounce 1s infinite 0.3s",
+      },
+      keyframes: {
+        scroll: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        bounce: {
+          "0%, 80%, 100%": { transform: "scale(0)" },
+          "40%": { transform: "scale(1)" },
+        },
+      },
     },
   },
   plugins: [],

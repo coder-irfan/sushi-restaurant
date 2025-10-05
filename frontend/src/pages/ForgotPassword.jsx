@@ -6,15 +6,18 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
-function ForgotPassword() {
+function ForgotPassword({ isAdmin = false }) {
   const {register, handleSubmit, formState: {errors} } = useForm();
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/forgotpassword`, {
+      const endpoint = isAdmin /* This is for both admin and users */
+      ? `${import.meta.env.VITE_API_URL}/api/admin/forgotpassword`
+      : `${import.meta.env.VITE_API_URL}/api/auth/forgotpassword`
+      
+      const res = await axios.post(endpoint, {
         ...data 
       }
     );
@@ -29,14 +32,14 @@ function ForgotPassword() {
 
 useEffect(() => {
   if(errors.email) toast.error(errors.email.message);
-});
+}, [errors.email]);
 
   return (
     <>
       <section className="flex justify-center items-center min-h-screen py-10 px-4 md:px-10">
         <div className="max-w-6xl mx-auto">
 
-          <Link to="/login">
+          <Link to={`${isAdmin ? '/admin/login' : '/login'}`}>
             <span className="my-4 text-lightGray font-cinzel hover:underline flex justify-start items-center gap-2 hover:text-goldYellow transition-colors duration-300">
               <FaArrowLeft className="w-3" />
               Back
@@ -80,9 +83,9 @@ useEffect(() => {
                     {loading ? 'Sending...' : 'Send Email'}
                   </button>
 
-                  <div className="mt-4 flex justify-between items-center">
+                  <div className="flex justify-between items-center">
                     <Link 
-                      to="/login" 
+                      to={`${isAdmin ? '/admin/login' : '/login'}`} 
                       className="underline hover:no-underline font-medium text-lightGray hover:text-goldYellow transition-colors duration-300"
                     >
                       Back to Login
@@ -94,7 +97,7 @@ useEffect(() => {
 
             <div className="">
               <img 
-                src="images/shrimp-sushi.webp"
+                src="/images/shrimp-sushi.webp"
                 alt="shrimp-sushi"
                 className="flex rounded-2xl w-[28.125rem] sm:w-[33.125rem] md:w-[34.375rem] h-52 lg:h-full lg:max-w-md xl:max-w-xl object-cover" 
               />

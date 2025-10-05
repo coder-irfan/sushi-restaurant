@@ -21,9 +21,9 @@ const Checkout = lazy(() => import ('./pages/Checkout'));
 const OrderSuccess = lazy(() => import ('./pages/SuccessOrder'));
 const Reservation = lazy(() => import ('./pages/Reservation'));
 const BookingSuccess = lazy(() => import ('./pages/SuccessBooking'));
-import Cart from "./pages/Cart";
 import MyOrder from "./pages/MyOrder";
 import MyBooking from "./pages/MyBooking";
+import Cart from "./pages/Cart";
 import { useAuth } from "./contexts/AuthContext";
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -151,22 +151,20 @@ function App() {
           </>
         )}
 
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path='/signup' element={<SignUp />} />
-            <Route path='/login' element={<LogIn />} />
-            <Route path='/forgotpassword' element={<ForgotPassword />} />
-            <Route path='/resetpassword/:token' element={<ResetPassword />} />
-            <Route path='/verify/:token' element={<VerifyEmail />} />
-            <Route path='/check-email' element={<CheckEmail />} />
-            <Route path='/checkout' element={<Checkout setCartItems={setCartItems} />} />
-            <Route path='/order-success' element={<OrderSuccess />} />
-            <Route path='/myorder' element={<MyOrder />} />
-            <Route path='/reservation' element={<Reservation />} />
-            <Route path='/reservation-success' element={<BookingSuccess />} />
-            <Route path='/mybooking' element={<MyBooking />} />
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path='/signup' element={<Suspense fallback={<Loader />}> <SignUp /> </Suspense>} />
+          <Route path='/login' element={<Suspense fallback={<Loader />}> <LogIn /> </Suspense>} />
+          <Route path='/forgotpassword' element={<Suspense fallback={<Loader />}> <ForgotPassword /> </Suspense>} />
+          <Route path='/resetpassword/:token' element={<Suspense fallback={<Loader />}> <ResetPassword /> </Suspense>} />
+          <Route path='/verify/:token' element={<Suspense fallback={<Loader />}> <VerifyEmail /> </Suspense>} />
+          <Route path='/check-email' element={<Suspense fallback={<Loader />}> <CheckEmail /> </Suspense>} />
+          <Route path='/checkout' element={<Suspense fallback={<Loader />}> <Checkout setCartItems={setCartItems} /> </Suspense>} />
+          <Route path='/order-success' element={<Suspense fallback={<Loader />}> <OrderSuccess /> </Suspense>} />
+          <Route path='/myorder' element={ <MyOrder /> } />
+          <Route path='/reservation' element={<Suspense fallback={<Loader />}> <Reservation /> </Suspense>} />
+          <Route path='/reservation-success' element={<Suspense fallback={<Loader />}> <BookingSuccess /> </Suspense>} />
+          <Route path='/mybooking' element={ <MyBooking /> } />
+        </Routes>
 
         <ToastContainer 
           position="top-right"

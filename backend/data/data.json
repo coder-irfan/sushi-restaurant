@@ -1,209 +1,209 @@
 [ 
   {
-    "img": "/images/tuna-sushi.svg",
+    "img": "/images/tuna-sushi.webp",
     "title": "Tuna Sushi",
     "text": "Fresh tuna slices paired with seasoned rice, offering a rich ocean flavor.",
     "price": 25.00,
-    "icon": "/images/5-stars.svg"
+    "icon": "/images/5-stars.webp"
   },
 
   {
-    "img": "/images/salmon-sushi.svg",
+    "img": "/images/salmon-sushi.webp",
     "title": "Salmon Sushi",
     "text": "Tender salmon layered over rice, melting in your mouth with every bite.",
     "price": 20.00,
-    "icon": "/images/5-stars.svg"
+    "icon": "/images/5-stars.webp"
   },
 
   {
-    "img": "/images/just-sushi.svg",
+    "img": "/images/just-sushi.webp",
     "title": "Just Sushi",
     "text": "Classic sushi rolls made with fresh ingredients for a pure, super simple taste.",
     "price": 28.00,
-    "icon": "/images/4-stars.svg"
+    "icon": "/images/4-stars.webp"
   },
 
   {
-    "img": "/images/avacado-sushi.jpg",
+    "img": "/images/avacado-sushi.webp",
     "title": "Avacado Sushi",
     "text": "Creamy avocado wrapped in rice and seaweed for a smooth, refreshing bite",
     "price": 18.00,
-    "icon": "/images/3-stars.svg"
+    "icon": "/images/3-stars.webp"
   },
 
   {
-    "img": "/images/eel-sushi.jpg",
+    "img": "/images/eel-sushi.webp",
     "title": "Eel Sushi",
     "text": "Tender grilled eel on seasoned rice, finished with a sweet, savory glaze.",
     "price": 22.00,
-    "icon": "/images/4-stars.svg"
+    "icon": "/images/4-stars.webp"
   },
 
   {
-    "img": "/images/chocolate-sushi.jpg",
+    "img": "/images/chocolate-sushi.webp",
     "title": "Chocolate Sushi",
     "text": "A unique dessert sushi combining sweet chocolate with soft rice and delicate flavors",
     "price": 26.00,
-    "icon": "/images/5-stars.svg"
+    "icon": "/images/5-stars.webp"
   },
 
   {
-    "img": "/images/carrot-sushi.jpg",
+    "img": "/images/carrot-sushi.webp",
     "title": "Carrot Sushi",
     "text": "Fresh crunchy carrot rolls with light seasoning, perfect for a healthy, vibrant taste.",
     "price": 15.00,
-    "icon": "/images/2-stars.svg"
+    "icon": "/images/2-stars.webp"
   },
 
   {
-    "img": "/images/fish-sushi.jpg",
+    "img": "/images/fish-sushi.webp",
     "title": "Fish Sushi",
     "text": "Fresh fish slices atop seasoned rice, delivering a rich and natural seafood flavor.",
     "price": 20.00,
-    "icon": "/images/4-stars.svg"
+    "icon": "/images/4-stars.webp"
   },
 
   {
-    "img": "/images/berries-sushi.jpg",
+    "img": "/images/berries-sushi.webp",
     "title": "Berries Sushi",
     "text": "Sweet berries paired with soft rice for an unexpected, fruity sushi experience.",
     "price": 28.00,
-    "icon": "/images/5-stars.svg"
+    "icon": "/images/5-stars.webp"
   },
 
   {
-    "img": "/images/dmr-sushi.jpg",
+    "img": "/images/dmr-sushi.webp",
     "title": "DMR Sushi",
     "text": "Signature chef roll with mixed fillings, creating a colorful and bold flavor.",
     "price": 20.00,
-    "icon": "/images/3-stars.svg"
+    "icon": "/images/3-stars.webp"
   },
 
   {
-    "img": "/images/creamy-sushi.svg",
+    "img": "/images/creamy-sushi.webp",
     "title": "Creamy Sushi",
     "text": "Smooth creamy filling with subtle seasonings, wrapped perfectly in delicate sushi rice.",
     "price": 24.00,
-    "icon": "/images/5-stars.svg"
+    "icon": "/images/5-stars.webp"
   },
 
   {
-    "img": "/images/fries-sushi.jpg",
+    "img": "/images/fries-sushi.webp",
     "title": "Fries Sushi",
     "text": "Crispy fries wrapped with sushi rice for a fun, crunchy, and indulgent taste.",
     "price": 23.00,
-    "icon": "/images/4-stars.svg"
+    "icon": "/images/4-stars.webp"
   },
 
   {
-    "img": "/images/leaf-sushi.jpg",
+    "img": "/images/leaf-sushi.webp",
     "title": "Leaf Sushi",
     "text": "Fresh green leaf with rice, highlighting natural flavors and a light, earthy bite.",
     "price": 18.00,
-    "icon": "/images/2-stars.svg"
+    "icon": "/images/2-stars.webp"
   },
 
   {
-    "img": "/images/dragon-sushi.svg",
+    "img": "/images/dragon-sushi.webp",
     "title": "Dragon Sushi",
     "text": "Elaborate dragon roll with layered ingredients, giving a flavorful experience.",
     "price": 38.00,
-    "icon": "/images/5-stars.svg"
+    "icon": "/images/5-stars.webp"
   },
 
   {
-    "img": "/images/mayo-sushi.jpg",
+    "img": "/images/mayo-sushi.webp",
     "title": "Mayo Sushi",
     "text": "Light mayo dressing blended with sushi ingredients for a rich, creamy finish.",
     "price": 30.00,
-    "icon": "/images/5-stars.svg"
+    "icon": "/images/5-stars.webp"
   },
 
   {
-    "img": "/images/meat-sushi.jpg",
+    "img": "/images/meat-sushi.webp",
     "title": "Meat Sushi",
     "text": "Savory cooked meat with rice, perfect for a hearty, protein-packed sushi bite.",
     "price": 40.00,
-    "icon": "/images/5-stars.svg"
+    "icon": "/images/5-stars.webp"
   },
 
   {
-    "img": "/images/roll-salmon-sushi.svg",
+    "img": "/images/roll-salmon-sushi.webp",
     "title": "Salmon Sushi",
     "text": "Fresh salmon rolled with rice and seaweed for a classic, clean sushi flavor.",
     "price": 36.00,
-    "icon": "/images/4-stars.svg"
+    "icon": "/images/4-stars.webp"
   },
 
   {
-    "img": "/images/rolled-sushi.jpg",
+    "img": "/images/rolled-sushi.webp",
     "title": "Rolled Sushi",
     "text": "Fresh salmon rolled with rice and seaweed for a classic, clean sushi flavor.",
     "price": 32.00,
-    "icon": "/images/3-stars.svg"
+    "icon": "/images/3-stars.webp"
   },
 
   {
-    "img": "/images/shrimp-sushi.jpg",
+    "img": "/images/shrimp-sushi.webp",
     "title": "Shrimp Sushi",
     "text": "Tender shrimp on seasoned rice, giving a sweet and subtly briny taste.",
     "price": 24.00,
-    "icon": "/images/4-stars.svg"
+    "icon": "/images/4-stars.webp"
   },
 
   {
-    "img": "/images/smooky-sushi.jpg",
+    "img": "/images/smooky-sushi.webp",
     "title": "Smooky Sushi",
     "text": "Smoked ingredients paired with rice for a deep, bold, and aromatic sushi flavor.",
     "price": 15.00,
-    "icon": "/images/2-stars.svg"
+    "icon": "/images/2-stars.webp"
   },
 
   {
-    "img": "/images/salmon-sushi-2.jpg",
+    "img": "/images/salmon-sushi-2.webp",
     "title": "Salmon Sushi",
     "text": "Fresh, rich salmon slices atop rice for a smooth, delicate, natural taste.",
     "price": 30.00,
-    "icon": "/images/5-stars.svg"
+    "icon": "/images/5-stars.webp"
   },
 
   {
-    "img": "/images/special-sushi.jpg",
+    "img": "/images/special-sushi.webp",
     "title": "Special Sushi",
     "text": "Special signature chef roll with mixed fillings, creating a colorful and bold flavor.",
     "price": 27.00,
-    "icon": "/images/3-stars.svg"
+    "icon": "/images/3-stars.webp"
   },
 
   {
-    "img": "/images/spicy-sushi.jpg",
+    "img": "/images/spicy-sushi.webp",
     "title": "Spicy Sushi",
     "text": "Spicy fillings combined with sushi rice, delivering a bold and exciting flavor punch.",
     "price": 20.00,
-    "icon": "/images/2-stars.svg"
+    "icon": "/images/2-stars.webp"
   },
 
   {
-    "img": "/images/tempura-sushi.jpg",
+    "img": "/images/tempura-sushi.webp",
     "title": "Tempura Sushi",
     "text": "Lightly fried tempura ingredients wrapped in rice for a crunchy, satisfying bite.",
     "price": 25.00,
-    "icon": "/images/4-stars.svg"
+    "icon": "/images/4-stars.webp"
   },
 
   {
-    "img": "/images/veggie-sushi.jpg",
+    "img": "/images/veggie-sushi.webp",
     "title": "Veggie Sushi",
     "text": "Fresh vegetables rolled with rice and seaweed for a colorful, healthy sushi option.",
     "price": 30.00,
-    "icon": "/images/4-stars.svg"
+    "icon": "/images/4-stars.webp"
   },
 
   {
-    "img": "/images/zucchini-sushi.jpg",
+    "img": "/images/zucchini-sushi.webp",
     "title": "Zucchini Sushi",
     "text": "Tender zucchini slices with rice for a mild, light, and refreshing sushi bite.",
     "price": 28.00,
-    "icon": "/images/3-stars.svg"
+    "icon": "/images/3-stars.webp"
   }
 ]

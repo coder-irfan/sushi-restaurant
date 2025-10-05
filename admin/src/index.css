@@ -22,3 +22,17 @@ body {
     max-width: 100rem;
     margin-inline: auto;
 }
+
+.input {
+    @apply py-2 lg:py-2.5 px-2 md:px-4 rounded-md text-lightGray text-sm sm:text-base border-[0.125rem] border-lightGray
+   focus:outline-none focus:border-goldYellow focus:text-goldYellow w-full bg-deepGray
+}
+
+.error {
+    @apply text-xs sm:text-sm font-medium text-red pl-2 pt-1
+}
+
+.file-upload-input {
+    @apply flex flex-col items-center justify-center w-full h-36 p-4 border-2 border-dashed border-lightGray rounded-xl 
+    cursor-pointer hover:border-goldYellow hover:bg-deepGray transition-colors duration-300 relative overflow-hidden
+}

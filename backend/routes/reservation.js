@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Reservation = require("../models/Reservation");
-const auth = require("../middleware/auth");
+const auth = require("../middleware/userAuthentication");
 const logAction = require("../utils/logger");
 
 router.post("/", auth, async (req, res) => {

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function ResetPassword() {
+function ResetPassword({ isAdmin = false }) {
   const { token } = useParams();
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,11 +14,15 @@ function ResetPassword() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/resetpassword/${token}`, {
+      const endpoint = isAdmin
+      ? `${import.meta.env.VITE_API_URL}/api/admin/resetpassword/${token}`
+      : `${import.meta.env.VITE_API_URL}/api/auth/resetpassword/${token}`
+      
+      const res = await axios.post(endpoint, {
         password: password.trim(),
       });
       toast.success(res.data.message); // Password reset successfully!
-      navigate("/login");
+      navigate(`${isAdmin ? "/admin/login" : "/login"}`);
     } catch(error) {
       console.error("Error:", error.response?.data?.message || error.message);
       toast.error(error.response?.data?.message || "Something went wrong!");
@@ -31,7 +35,7 @@ function ResetPassword() {
       <section className="flex justify-center items-center min-h-screen py-10 px-4 md:px-10">
         <div className="">
 
-          <div className="bg-deepGray shadow-2xl rounded-sm shadow-black px-4 py-6 lg:px-10 lg:py-8">
+          <div className="grid lg:grid-cols-2 items-center gap-10">
             <div className="space-y-10 lg:space-y-16">
 
               <h2 className="text-lightGray font-medium text-2xl lg:text-3xl xl:text-[2.5rem] text-left">
@@ -65,6 +69,14 @@ function ResetPassword() {
                   </button>
                 </div>
               </form>
+            </div>
+
+            <div className="">
+              <img 
+                src="/images/shrimp-sushi.webp"
+                alt="shrimp-sushi"
+                className="flex rounded-2xl w-[28.125rem] sm:w-[33.125rem] md:w-[34.375rem] h-52 lg:h-full lg:max-w-md xl:max-w-xl object-cover" 
+              />
             </div>
           </div>
         </div>

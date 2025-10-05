@@ -28,6 +28,7 @@ const sushiSchema = new mongoose.Schema(
 
     icon: {
       type: String,
+      required: true,
       trim: true,
     },
   },

@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Orders = require("../models/Orders");
-const auth = require("../middleware/auth");
+const auth = require("../middleware/userAuthentication");
+const adminAuth = require("../middleware/adminAuthentication");
 
 router.post("/", auth, async (req, res) => {
   try {
@@ -147,6 +148,16 @@ router.patch("/:id/cancel", auth, async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to cancel order" });
+  }
+});
+
+// Get all orders (Only Admin)
+router.get("/", adminAuth, async (req, res) => {
+  try {
+    const orders = await Orders.find();
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
   }
 });
 
