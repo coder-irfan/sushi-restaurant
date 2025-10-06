@@ -12,29 +12,37 @@ const adminAuthRoutes = require("./routes/adminAuth");
 
 const app = express();
 
-// Middlewares
-// We must use a function when we have multiple origins.
+// CORS configuration (production-ready)
+// Allowed origins
 const allowedOrigins = [
   /* "http://localhost:5173, http://localhost:5174, http://localhost:5000", */
-  process.env.FRONTEND_URL, // frontend
-  process.env.ADMIN_URL, // admin
+  process.env.FRONTEND_URL, // frontend URL
+  process.env.ADMIN_URL, // admin URL
 ];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // allow non-browser requests like Postman
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
+// Middleware to handle CORS
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // allow requests with no origin (like Postman, server-to-server)
+      if (!origin) return callback(null, true);
 
-app.use(cors(corsOptions));
+      // check if the origin is in our allowed list
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // origin not allowed
+      return callback(new Error("CORS policy: This origin is not allowed."));
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// Handle preflight requests for all routes
+app.options("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
