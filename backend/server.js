@@ -14,20 +14,19 @@ const app = express();
 
 // Middlewares
 // We must use a function when we have multiple origins.
-const allowedOrigions = [
+const allowedOrigins = [
   /* "http://localhost:5173, http://localhost:5174, http://localhost:5000", */
-  "https://sushi-restaurant-m6oe.onrender.com", // frontend
-  process.env.FRONTEND_URL, // backend frontend
+  process.env.FRONTEND_URL, // frontend
   process.env.ADMIN_URL, // admin
 ];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // Allow non-browser requests like postmon
-    if (allowedOrigions.includes(origin)) {
+    if (!origin) return callback(null, true); // allow non-browser requests like Postman
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Now allowed by CORS"));
+      callback(new Error("Not allowed by CORS"));
     }
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
