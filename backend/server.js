@@ -16,31 +16,23 @@ const app = express();
 // We must use a function when we have multiple origins.
 const allowedOrigins = [
   /* "http://localhost:5173, http://localhost:5174, http://localhost:5000", */
-  process.env.FRONTEND_URL,
-  process.env.ADMIN_URL,
+  process.env.FRONTEND_URL, // frontend
+  process.env.ADMIN_URL, // admin
 ];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200); // respond OK to preflight
-  }
-
-  next();
-});
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow non-browser requests like Postman
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -71,7 +63,7 @@ app.post("/api/sushi", async (req, res) => {
 });
 
 // Delete sushi
-app.delete("api/sushi/delete", async (req, res) => {
+app.delete("/api/sushi/delete", async (req, res) => {
   try {
     await Sushi.deleteOne({});
     res.status(200).json({ message: "Sushi deleted!" });
