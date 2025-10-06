@@ -17,8 +17,8 @@ const app = express();
 const allowedOrigions = [
   /* "http://localhost:5173, http://localhost:5174, http://localhost:5000", */
   "https://sushi-restaurant-m6oe.onrender.com", // frontend
-  "https://sushi-restaurant-hylm.onrender.com", // backend frontend
-  "https://sushi-restaurant-admin.onrender.com", // admin
+  process.env.FRONTEND_URL, // backend frontend
+  process.env.ADMIN_URL, // admin
 ];
 
 const corsOptions = {
