@@ -6,18 +6,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
-function ForgotPassword({ isAdmin = false }) {
+function ForgotPassword() {
   const {register, handleSubmit, formState: {errors} } = useForm();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
     try {
-      setLoading(true);
-      const endpoint = isAdmin /* This is for both admin and users */
-      ? `${import.meta.env.VITE_API_URL}/api/admin/forgotpassword`
-      : `${import.meta.env.VITE_API_URL}/api/auth/forgotpassword`
-      
-      const res = await axios.post(endpoint, {
+      setLoading(true);      
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/forgotpassword`, {
         ...data 
       }
     );
@@ -39,7 +35,7 @@ useEffect(() => {
       <section className="flex justify-center items-center min-h-screen py-10 px-4 md:px-10">
         <div className="max-w-6xl mx-auto">
 
-          <Link to={`${isAdmin ? '/admin/login' : '/login'}`}>
+          <Link to={'/admin/login'}>
             <span className="my-4 text-lightGray font-cinzel hover:underline flex justify-start items-center gap-2 hover:text-goldYellow transition-colors duration-300">
               <FaArrowLeft className="w-3" />
               Back
@@ -85,7 +81,7 @@ useEffect(() => {
 
                   <div className="flex justify-between items-center">
                     <Link 
-                      to={`${isAdmin ? '/admin/login' : '/login'}`} 
+                      to={'/admin/login'} 
                       className="underline hover:no-underline font-medium text-lightGray hover:text-goldYellow transition-colors duration-300"
                     >
                       Back to Login

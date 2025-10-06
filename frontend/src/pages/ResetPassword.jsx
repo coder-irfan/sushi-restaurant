@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function ResetPassword({ isAdmin = false }) {
+function ResetPassword() {
   const { token } = useParams();
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,15 +14,11 @@ function ResetPassword({ isAdmin = false }) {
     e.preventDefault();
     try {
       setLoading(true);
-      const endpoint = isAdmin
-      ? `${import.meta.env.VITE_API_URL}/api/admin/resetpassword/${token}`
-      : `${import.meta.env.VITE_API_URL}/api/auth/resetpassword/${token}`
-      
-      const res = await axios.post(endpoint, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/resetpassword/${token}`,{
         password: password.trim(),
       });
       toast.success(res.data.message); // Password reset successfully!
-      navigate(`${isAdmin ? "/admin/login" : "/login"}`);
+      navigate("/login");
     } catch(error) {
       console.error("Error:", error.response?.data?.message || error.message);
       toast.error(error.response?.data?.message || "Something went wrong!");
