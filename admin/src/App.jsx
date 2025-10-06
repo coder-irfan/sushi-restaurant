@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 const AdminLogin = lazy(() => import ("./pages/AdminLogin"));
 import Loader from "./pages/Loader";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import ForgotPassword from "../../shared-components/pages/ForgotPassword";
-import ResetPassword from "../../shared-components/pages/ResetPassword";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./components/Dashboard";
 import { useAdminAuth } from "./context/AdminAuthContext";
 import { ToastContainer, Slide } from "react-toastify";
@@ -24,7 +24,7 @@ function App() {
       <div className="">
         <Routes>
           <Route path="/admin/login" element={<Suspense fallback={<Loader />}> <AdminLogin/> </Suspense>}></Route>
-          <Route path="/admin/forgotpassword" element={<Suspense fallback={<Loader />}> <ForgotPassword isAdmin={true} /> </Suspense>}></Route>
+          <Route path="/admin/forgotpassword" element={<Suspense fallback={<Loader />}> <ForgotPassword /> </Suspense>}></Route>
           <Route path="/admin/resetpassword/:token" element={<Suspense fallback={<Loader />}> <ResetPassword /> </Suspense>} />
           <Route path="/admin/dashboard/*" element={<Suspense fallback={<Loader />}><ProtectedRoutes> <Dashboard /> </ProtectedRoutes> </Suspense>} />
         </Routes>

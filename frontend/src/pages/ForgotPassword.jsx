@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
-function ForgotPassword({ isAdmin = false }) {
+function ForgotPassword() {
   const {register, handleSubmit, formState: {errors} } = useForm();
   const [loading, setLoading] = useState(false);
 
