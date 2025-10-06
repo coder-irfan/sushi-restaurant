@@ -22,7 +22,7 @@ const allowedOrigions = [
 ];
 
 const corsOptions = {
-  origion: function (origin, callback) {
+  origin: function (origin, callback) {
     if (!origin) return callback(null, true); // Allow non-browser requests like postmon
     if (allowedOrigions.includes(origin)) {
       callback(null, true);
