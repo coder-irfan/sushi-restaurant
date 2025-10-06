@@ -14,7 +14,11 @@ const app = express();
 
 // Middlewares
 const corsOptions = {
-  origin: ["https://sushi-restaurant-m6oe.onrender.com"],
+  origin: [
+    /* "http://localhost:5173, http://localhost:5174, http://localhost:5000", */
+    "https://sushi-restaurant-m6oe.onrender.com", // frontend
+    "https://sushi-restaurant-hylm.onrender.com", // admin
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
