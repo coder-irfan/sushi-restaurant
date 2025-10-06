@@ -18,6 +18,7 @@ const corsOptions = {
     /* "http://localhost:5173, http://localhost:5174, http://localhost:5000", */
     "https://sushi-restaurant-m6oe.onrender.com", // frontend
     "https://sushi-restaurant-hylm.onrender.com", // admin
+    "https://sushi-restaurant-admin.onrender.com",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],

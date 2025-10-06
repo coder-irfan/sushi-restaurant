@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 const AdminLogin = lazy(() => import ("./pages/AdminLogin"));
 import Loader from "./pages/Loader";
 import ProtectedRoutes from "./components/ProtectedRoutes";
@@ -23,6 +23,8 @@ function App() {
     <>
       <div className="">
         <Routes>
+          {/* Redirect root to login */}
+          <Route path="/" element={<Navigate to="/admin/login" replace />}></Route>
           <Route path="/admin/login" element={<Suspense fallback={<Loader />}> <AdminLogin/> </Suspense>}></Route>
           <Route path="/admin/forgotpassword" element={<Suspense fallback={<Loader />}> <ForgotPassword /> </Suspense>}></Route>
           <Route path="/admin/resetpassword/:token" element={<Suspense fallback={<Loader />}> <ResetPassword /> </Suspense>} />
