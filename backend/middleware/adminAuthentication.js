@@ -24,7 +24,6 @@ const adminAuthentication = async (req, res, next) => {
     req.admin = admin;
     next();
   } catch (error) {
-    console.error("Auth middleware error:", error);
     res.status(401).json({ message: "Not authorized" });
   }
 };

@@ -15,12 +15,15 @@ function Specialities() {
             </h2>
 
             <p className="text-lightGray md:text-lg lg:text-xl">
-              Authentic food from our restaurant served with high quality ingredients
+              Authentic food from our restaurant served with high quality
+              ingredients
             </p>
           </div>
 
-          <div className="whitespace-nowrap animate-scroll flex items-center gap-10 sm:gap-16 lg:gap-20 hover:[animation-play-state:paused]
-           text-lightGray md:text-lg lg:text-xl ">
+          <div
+            className="whitespace-nowrap animate-scroll flex items-center gap-10 sm:gap-16 lg:gap-20 hover:[animation-play-state:paused]
+           text-lightGray md:text-lg lg:text-xl "
+          >
             <h3 className="border-2 border-white py-3 px-6">Specialities</h3>
             <h3 className="border-2 border-white py-3 px-6">Homestyle Sushi</h3>
             <h3 className="border-2 border-white py-3 px-6">Steak</h3>
@@ -37,7 +40,7 @@ function Specialities() {
         </div>
       </section>
     </>
-  )
+  );
 }
 
 export default Specialities;

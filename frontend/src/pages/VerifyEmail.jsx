@@ -6,22 +6,23 @@ import { Link } from "react-router-dom";
 
 function VerifyEmail() {
   const { token } = useParams();
-  const [ message, setMessage ] = useState("Verifying...");
+  const [message, setMessage] = useState("Verifying...");
 
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/verify/${token}`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/auth/verify/${token}`
+        );
         const data = await res.json();
 
-        if(data.success) {
+        if (data.success) {
           setMessage("🎉 Your email has been successfully verified!");
         } else {
           setMessage("❌ Verification failed or token expired.");
         }
-      } catch(error) {
-        console.error(error);
-        setMessage("Something went wrong.")
+      } catch (error) {
+        setMessage("Something went wrong.");
       }
     };
     verify();
@@ -33,9 +34,7 @@ function VerifyEmail() {
         <div className="flex flex-col items-center justify-center gap-8 lg:gap-16 bg-deepGray shadow-2xl rounded-sm shadow-black px-8 py-10 lg:px-20 lg:py-16">
           <FaCheckCircle className="text-goldYellow text-5xl lg:text-6xl" />
           <div className="text-center">
-            <p className="text-lg md:text-xl lg:text-2xl max-w-lg">
-              {message}
-            </p>
+            <p className="text-lg md:text-xl lg:text-2xl max-w-lg">{message}</p>
           </div>
 
           <Link to="/">
@@ -44,11 +43,10 @@ function VerifyEmail() {
               Go to homepage
             </span>
           </Link>
-          
         </div>
       </section>
     </>
-  )
+  );
 }
 
 export default VerifyEmail;

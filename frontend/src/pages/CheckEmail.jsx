@@ -14,21 +14,23 @@ function CheckEmail() {
     try {
       setLoading(true);
 
-      if(!email) {
+      if (!email) {
         toast.error("Email not found");
         return;
-      };
+      }
 
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/resend-verification`, {
-        email,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/resend-verification`,
+        {
+          email,
+        }
+      );
       toast.success(response.data.message);
       setResent(true);
       setTimeout(() => {
         setResent(false);
       }, 10000);
-    } catch(error) {
-      console.error(error);
+    } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong!");
     } finally {
       setLoading(false);
@@ -45,19 +47,27 @@ function CheckEmail() {
               Verify Your Email
             </h2>
             <p className="text-lg md:text-xl lg:text-2xl max-w-lg">
-              We’ve sent you a <strong className="text-softBeigeYellow">verification link.</strong> Please check your inbox (or spam folder).
+              We’ve sent you a{" "}
+              <strong className="text-softBeigeYellow">
+                verification link.
+              </strong>{" "}
+              Please check your inbox (or spam folder).
             </p>
           </div>
 
           <div className="flex flex-col items-center justify-center gap-6">
-            <button 
+            <button
               onClick={handleResend}
               disabled={loading || resent}
               className={`bg-goldYellow shadow-[0_0_0.2rem] shadow-goldYellow text-darkCharcoal font-cormorantSC font-semibold w-full max-w-28 lg:max-w-56 md:text-lg
                 lg:text-xl py-1 px-4 hover:bg-softBeigeYellow hover:shadow-softBeigeYellow transition-color duration-300 rounded-md
-                ${loading ? 'cursor-not-allowed opacity-70' : ''}`}
+                ${loading ? "cursor-not-allowed opacity-70" : ""}`}
             >
-              {loading ? "Sending..." : resent ? "Email sent" : "Resend verification"}
+              {loading
+                ? "Sending..."
+                : resent
+                  ? "Email sent"
+                  : "Resend verification"}
             </button>
 
             <Link to="/login">
@@ -70,7 +80,7 @@ function CheckEmail() {
         </div>
       </section>
     </>
-  )
+  );
 }
 
 export default CheckEmail;

@@ -1,10 +1,12 @@
-import React, {createContext, useEffect, useState, useContext} from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
-  const [token, setToken] = useState(() => localStorage.getItem("token") || sessionStorage.getItem("token"));
+export const AuthProvider = ({ children }) => {
+  const [token, setToken] = useState(
+    () => localStorage.getItem("token") || sessionStorage.getItem("token")
+  );
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(!!token); // True while verifying token
 
@@ -17,14 +19,16 @@ export const AuthProvider = ({children}) => {
       }
       try {
         // Try to get user info using token
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/user`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/auth/user`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setUser(res.data.user || res.data);
-      } catch(error) {
-        console.warn("Token invalid or auth/user failed", error?.response?.status);
+      } catch (error) {
         localStorage.removeItem("token");
         setToken(null);
         setUser(null);
@@ -61,9 +65,9 @@ export const AuthProvider = ({children}) => {
         setUser, // Optional: to update profile
       }}
     >
-      {children}    
+      {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
 export const useAuth = () => useContext(AuthContext);

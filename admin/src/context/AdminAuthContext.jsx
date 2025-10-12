@@ -1,10 +1,12 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const AdminAuthContext = createContext();
 
 export const AdminAuthProvider = ({ children }) => {
-  const [token, setToken] = useState(() => sessionStorage.getItem("adminToken"));
+  const [token, setToken] = useState(() =>
+    sessionStorage.getItem('adminToken')
+  );
   const [admin, setAdmin] = useState(null);
   const [loading, setLoading] = useState(!!token);
 
@@ -15,15 +17,17 @@ export const AdminAuthProvider = ({ children }) => {
         return;
       }
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/dashboard-data`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/admin/dashboard-data`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setAdmin(res.data.admin || res.data);
       } catch (error) {
-        console.warn("Admin token invalid:", error?.response?.status);
-        sessionStorage.removeItem("adminToken");
+        sessionStorage.removeItem('adminToken');
         setToken(null);
         setAdmin(null);
       } finally {
@@ -34,15 +38,19 @@ export const AdminAuthProvider = ({ children }) => {
   }, [token]);
 
   const login = (newToken, adminData = null) => {
-    sessionStorage.setItem("adminToken", newToken);
+    sessionStorage.setItem('adminToken', newToken);
     setToken(newToken);
     if (adminData) setAdmin(adminData);
   };
 
   const logout = () => {
-    sessionStorage.removeItem("adminToken");
+    sessionStorage.removeItem('adminToken');
     setToken(null);
     setAdmin(null);
+  };
+
+  const updateAdmin = (updateData) => {
+    setAdmin((prev) => ({ ...prev, ...updateData }));
   };
 
   return (
@@ -53,10 +61,11 @@ export const AdminAuthProvider = ({ children }) => {
         loading,
         login,
         logout,
-        setAdmin, 
+        setAdmin,
+        updateAdmin,
       }}
     >
-      {children}      
+      {children}
     </AdminAuthContext.Provider>
   );
 };

@@ -8,6 +8,7 @@ const sushiRoutes = require("./routes/sushi");
 const reservationRoutes = require("./routes/reservation");
 const ordersRoutes = require("./routes/orders");
 const Sushi = require("./models/Sushis");
+const Orders = require("./models/Orders");
 const adminAuthRoutes = require("./routes/adminAuth");
 
 const app = express();
@@ -15,9 +16,11 @@ const app = express();
 // CORS configuration (production-ready)
 // Allowed origins
 const allowedOrigins = [
-  /* "http://localhost:5173, http://localhost:5174, http://localhost:5000", */
-  process.env.FRONTEND_URL, // frontend URL
-  process.env.ADMIN_URL, // admin URL
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:5000",
+  /* process.env.FRONTEND_URL, // frontend URL
+  process.env.ADMIN_URL, // admin URL */
 ];
 
 // Middleware to handle CORS
@@ -42,6 +45,10 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Static images
+app.use("/images", express.static(path.join(__dirname, "public/images")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -97,7 +104,7 @@ app.delete("/api/sushi/bulk/delete", async (req, res) => {
   }
 });
 
-// Update format of images to webp
+// Update format of images to webp for sushis
 app.put("/api/sushi/update-images", async (req, res) => {
   try {
     const sushis = await Sushi.find();
@@ -115,9 +122,31 @@ app.put("/api/sushi/update-images", async (req, res) => {
   }
 });
 
-// Static images
-app.use("/images", express.static(path.join(__dirname, "public/images")));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// Updating imgs format from svg, png, jpb... to webp for orders
+app.put("/api/orders/update-images", async (req, res) => {
+  try {
+    const orders = await Orders.find();
+
+    for (let o of orders) {
+      let updated = false;
+
+      // Loop through items because imgs are inside items
+      o.items.forEach((item) => {
+        if (item.img && item.img.endsWith(`.webp`)) {
+          item.img = item.img.replace(/\.(jpg|jpeg|png|svg)$/i, ".webp");
+          updated = true;
+        }
+      });
+
+      o.markModified("items");
+      if (updated) await o.save();
+    }
+
+    res.status(200).json({ message: "All orders images are updated to Webp!" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // Fetching Middleware to protect routes (create a protected route /api/profile that only logged-in users (with a valid token) can access, and it returns their ID and email.)
 const auth = require("./middleware/userAuthentication");

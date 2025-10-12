@@ -3,36 +3,36 @@
 @tailwind utilities;
 
 html {
-    scroll-behavior: smooth;
-    font-size: 100%;
-    overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-size: 100%;
+  overflow-x: hidden;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-    background-color: #1E1E1E;
-    color: white;
-    max-width: 100rem;
-    margin-inline: auto;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  background-color: #1e1e1e;
+  color: white;
+  max-width: 100rem;
+  margin-inline: auto;
 }
 
 .input {
-    @apply py-2 lg:py-2.5 px-2 md:px-4 rounded-md text-lightGray text-sm sm:text-base border-[0.125rem] border-lightGray
-   focus:outline-none focus:border-goldYellow focus:text-goldYellow w-full bg-deepGray
+  @apply py-2 lg:py-2.5 px-2 md:px-4 rounded-md text-lightGray text-sm sm:text-base border-[0.125rem] border-lightGray
+   focus:outline-none focus:border-goldYellow focus:text-goldYellow w-full bg-deepGray;
 }
 
 .error {
-    @apply text-xs sm:text-sm font-medium text-red pl-2 pt-1
+  @apply text-xs sm:text-sm font-medium text-red pl-2 pt-1;
 }
 
 .file-upload-input {
-    @apply flex flex-col items-center justify-center w-full h-36 p-4 border-2 border-dashed border-lightGray rounded-xl 
-    cursor-pointer hover:border-goldYellow hover:bg-deepGray transition-colors duration-300 relative overflow-hidden
+  @apply flex flex-col items-center justify-center w-full h-36 p-4 border-2 border-dashed border-lightGray rounded-xl 
+    cursor-pointer hover:border-goldYellow hover:bg-deepGray transition-colors duration-300 relative overflow-hidden;
 }

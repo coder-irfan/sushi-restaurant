@@ -6,9 +6,7 @@ const Admin = require("./models/Admin");
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB Connected!");
   } catch (error) {
-    console.error("MongoDB Connection Failed:", error.message);
     process.exit(1); // used if something goess wrong (means failure); process.exit(0) means success
   }
 };
@@ -22,7 +20,6 @@ const createSuperAdmin = async () => {
     });
 
     if (existingAdmin) {
-      console.log("Super Admin already exists!");
       process.exit();
     }
 
@@ -34,9 +31,7 @@ const createSuperAdmin = async () => {
     });
 
     await admin.save();
-    console.log("Super Admin created successfully!");
   } catch (error) {
-    console.error("Error creating Super Admin:", error);
     process.exit(1);
   }
 };

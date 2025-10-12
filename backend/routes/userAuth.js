@@ -8,6 +8,7 @@ const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const authLimiter = require("../middleware/rateLimitter");
 const authMiddleware = require("../middleware/userAuthentication");
+const adminAuth = require("../middleware/adminAuthentication");
 const logAction = require("../utils/logger");
 
 // SignUp
@@ -85,19 +86,32 @@ router.post("/signup", authLimiter, async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: `"Sushi Restaurant 🍣" <${process.env.EMAIL_USER}>`,
+      from: `"Sushi Restaurant" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: "Verify your email",
-      html: `<p>Click to verify your email:</p><a href="${verificationLink}">${verificationLink}</a>`,
+      subject: "Verify Your Email Address",
+      html: `
+    <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.5; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 8px; background-color: #f9f9f9;">
+      <h2 style="color: #F5BE32;">Welcome to Sushi Restaurant 🍣</h2>
+      <p>Hello,</p>
+      <p>Thank you for creating an account with us! To get started, please verify your email address by clicking the button below:</p>
+
+      <p style="text-align: center; margin: 30px 0;">
+        <a href="${verificationLink}" style="background-color: #F5BE32; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 6px; display: inline-block; font-weight: bold;">Verify Email</a>
+      </p>
+
+      <p>If the button above does not work, copy and paste the following link into your browser:</p>
+      <p style="word-break: break-all;"><a href="${verificationLink}" style="color: #1d4ed8;">${verificationLink}</a></p>
+
+      <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;" />
+      <p style="font-size: 0.9rem; color: #666;">If you did not create an account, please ignore this email or contact us at <a href="mailto:${process.env.EMAIL_USER}">${process.env.EMAIL_USER}</a>.</p>
+    </div>
+  `,
     });
 
     res.status(201).json({
       message: "Verification email sent!",
     });
-
-    console.log("req.body:", req.body);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: "Server error!" });
   }
 });
@@ -164,7 +178,6 @@ router.post("/login", authLimiter, async (req, res) => {
       user: { id: user._id, fullname: user.fullname, email: user.email },
     });
   } catch (error) {
-    console.error("Login error:", error);
     return res.status(500).json({ message: "Server error." });
   }
 });
@@ -180,7 +193,6 @@ router.get("/user", authMiddleware, async (req, res) => {
 
     res.json({ user });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: "Server error" });
   }
 });
@@ -217,18 +229,29 @@ router.post("/forgotpassword", authLimiter, async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: `"Sushi Restaurant 🍣" <${process.env.EMAIL_USER}>`,
+      from: `"Sushi Restaurant" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Password Reset Request",
       html: `
-        <p>Click the link below to reset your password:</p>
-        <a href="${resetLink}">${resetLink}</a>
-      `,
+    <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.5; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 8px; background-color: #f9f9f9;">
+      <h2 style="color: #F5BE32;">Hello,</h2>
+      <p>We received a request to reset your password for your <strong>Sushi Restaurant 🍣</strong> account. If you made this request, please use the button below to set a new password.</p>
+
+      <p style="text-align: center; margin: 30px 0;">
+        <a href="${resetLink}" style="background-color: #F5BE32; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 6px; display: inline-block; font-weight: bold;">Reset Password</a>
+      </p>
+
+      <p>If the button above does not work, copy and paste the following link into your browser:</p>
+      <p style="word-break: break-all;"><a href="${resetLink}" style="color: #1d4ed8;">${resetLink}</a></p>
+
+      <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;" />
+      <p style="font-size: 0.9rem; color: #666;">If you did not request a password reset, please ignore this email or contact us at <a href="mailto:${process.env.EMAIL_USER}">${process.env.EMAIL_USER}</a> for assistance.</p>
+    </div>
+  `,
     });
 
     res.json({ message: "Password reset email sent!" });
   } catch (err) {
-    console.error("Nodemailer error:", err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
 });
@@ -284,7 +307,6 @@ router.get("/verify/:token", async (req, res) => {
 
     res.json({ success: true, message: "Email verified successfully!" });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
@@ -331,18 +353,60 @@ router.post("/resend-verification", authLimiter, async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: `"Sushi restuarant 🍣" <${process.env.EMAIL_USER}>`,
+      from: `"Sushi Restaurant" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: "Verify your email - Resent",
-      html: `<p>Click to verify your email:</p><a href="${verificationLink}">${verificationLink}</a>`,
+      subject: "Verify Your Email Address",
+      html: `
+        <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.5; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 8px; background-color: #f9f9f9;">
+          
+          <p style="text-align: center; margin: 30px 0;">
+            <a href="${verificationLink}" style="background-color: #F5BE32; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 6px; display: inline-block; font-weight: bold;">Verify Email</a>
+          </p>
+
+          <p>If the button above does not work, copy and paste the following link into your browser:</p>
+          <p style="word-break: break-all;"><a href="${verificationLink}" style="color: #1d4ed8;">${verificationLink}</a></p>
+
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;" />
+          <p style="font-size: 0.9rem; color: #666;">If you did not sign up for this account, please ignore this email. <br />For support, contact us at <a href="mailto:${process.env.EMAIL_USER}">${process.env.EMAIL_USER}</a>.</p>
+        </div>
+      `,
     });
 
     res
       .status(200)
       .json({ message: "Verification email resent! Check your inbox." });
   } catch (error) {
-    console.error("Resend verification error:", error);
     res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Fetch users for admin
+router.get("/", adminAuth, async (req, res) => {
+  try {
+    const users = await User.find();
+
+    if (!users) {
+      return res.status(404).json({ message: "Users not found!" });
+    }
+
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: "Server error!" });
+  }
+});
+
+// Delete user by admin
+router.delete("/:id", adminAuth, async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found!" });
+    }
+
+    res.status(200).json({ message: "User deleted successfully!" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error!" });
   }
 });
 
