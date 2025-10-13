@@ -16,11 +16,12 @@ const app = express();
 // CORS configuration (production-ready)
 // Allowed origins
 const allowedOrigins = [
-  "http://localhost:5173",
+  /* "http://localhost:5173",
   "http://localhost:5174",
-  "http://localhost:5000",
-  /* process.env.FRONTEND_URL, // frontend URL
-  process.env.ADMIN_URL, // admin URL */
+  "http://localhost:5000", */
+  "https://sushi-restaurant-hylm.onrender.com", // frontend URL
+  "https://sushi-restaurant-admin.onrender.com", // admin URL
+  "https://sushi-restaurant-m6oe.onrender.com", // backend URL
 ];
 
 // Middleware to handle CORS
