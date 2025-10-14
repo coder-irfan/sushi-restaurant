@@ -23,15 +23,15 @@ export default {
         cinzel: "Cinzel",
       },
       animation: {
-        scroll: "scroll 25s linear infinite",
+        scroll: "scroll 20s linear infinite",
         bounce1: "bounce 1s infinite 0.1s",
         bounce2: "bounce 1s infinite 0.2s",
         bounce3: "bounce 1s infinite 0.3s",
       },
       keyframes: {
         scroll: {
-          "0%": { transform: "translateX(100%)" },
-          "100%": { transform: "translateX(-100%)" },
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
         bounce: {
           "0%, 80%, 100%": { transform: "scale(0)" },

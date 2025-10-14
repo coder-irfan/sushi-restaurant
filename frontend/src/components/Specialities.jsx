@@ -20,22 +20,33 @@ function Specialities() {
             </p>
           </div>
 
-          <div
-            className="whitespace-nowrap animate-scroll flex items-center gap-10 sm:gap-16 lg:gap-20 hover:[animation-play-state:paused]
-           text-lightGray md:text-lg lg:text-xl "
-          >
-            <h3 className="border-2 border-white py-3 px-6">Specialities</h3>
-            <h3 className="border-2 border-white py-3 px-6">Homestyle Sushi</h3>
-            <h3 className="border-2 border-white py-3 px-6">Steak</h3>
-            <h3 className="border-2 border-white py-3 px-6">With Rice</h3>
-            <h3 className="border-2 border-white py-3 px-6">Cocktails</h3>
-            <h3 className="border-2 border-white py-3 px-6">Appetizer</h3>
-            <h3 className="border-2 border-white py-3 px-6">Specialities</h3>
-            <h3 className="border-2 border-white py-3 px-6">Homestyle Sushi</h3>
-            <h3 className="border-2 border-white py-3 px-6">Steak</h3>
-            <h3 className="border-2 border-white py-3 px-6">With Rice</h3>
-            <h3 className="border-2 border-white py-3 px-6">Cocktails</h3>
-            <h3 className="border-2 border-white py-3 px-6">Appetizer</h3>
+          <div className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-darkCharcoal to-transparent pointer-events-none z-20"></div>
+            <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-darkCharcoal to-transparent pointer-events-none z-20"></div>
+
+            <div className="flex animate-scroll gap-8 lg:gap-12 py-4">
+              {[...Array(3)].map(
+                (
+                  _,
+                  repeat // repeat for seamless loop
+                ) =>
+                  [
+                    "Specialities",
+                    "Homestyle Sushi",
+                    "Steak",
+                    "With Rice",
+                    "Cocktails",
+                    "Appetizer",
+                  ].map((item, idx) => (
+                    <div
+                      key={`${repeat}-${idx}`}
+                      className="flex-none bg-gradient-to-br from-softBeigeYellow/10 to-softBeigeYellow/30 border border-softBeigeYellow rounded-xl py-2 px-6 lg:py-3 lg:px-8 text-white md:text-lg font-semibold shadow-xl transform transition-transform duration-500 hover:scale-110"
+                    >
+                      {item}
+                    </div>
+                  ))
+              )}
+            </div>
           </div>
         </div>
       </section>
