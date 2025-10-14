@@ -23,14 +23,14 @@ export default {
         cinzel: "Cinzel",
       },
       animation: {
-        scroll: "scroll 20s linear infinite",
         bounce1: "bounce 1s infinite 0.1s",
         bounce2: "bounce 1s infinite 0.2s",
         bounce3: "bounce 1s infinite 0.3s",
+        scroll: "scroll 30s linear infinite", // default
       },
       keyframes: {
         scroll: {
-          "0%": { transform: "translateX(0)" },
+          "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
         },
         bounce: {
@@ -40,5 +40,24 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        // Responsive animation durations
+        ".animate-scroll": {
+          animation: "scroll 30s linear infinite",
+        },
+        "@media (max-width: 640px)": {
+          ".animate-scroll": {
+            animation: "scroll 15s linear infinite", // faster on mobile
+          },
+        },
+        "@media (min-width: 1024px)": {
+          ".animate-scroll": {
+            animation: "scroll 40s linear infinite", // slower on large screens
+          },
+        },
+      });
+    },
+  ],
 };
