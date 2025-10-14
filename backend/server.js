@@ -21,6 +21,7 @@ const corsOptions = {
   "http://localhost:5000", */
     "https://sushi-restaurant-m6oe.onrender.com",
     "https://sushi-restaurant-admin.onrender.com",
+    "https://sushi-restaurant-hylm.onrender.com",
   ],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
