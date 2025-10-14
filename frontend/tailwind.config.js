@@ -49,12 +49,12 @@ export default {
         },
         "@media (max-width: 640px)": {
           ".animate-scroll": {
-            animation: "scroll 15s linear infinite", // faster on mobile
+            animation: "scroll 10s linear infinite", // faster on mobile
           },
         },
         "@media (min-width: 1024px)": {
           ".animate-scroll": {
-            animation: "scroll 40s linear infinite", // slower on large screens
+            animation: "scroll 30s linear infinite", // slower on large screens
           },
         },
       });

@@ -40,7 +40,7 @@ function Specialities() {
                   {item}
                 </div>
               ))}
-              {/* Repeat items for seamless effect */}
+              {/* Repeat for seamless scroll */}
               {[
                 "Specialities",
                 "Homestyle Sushi",
