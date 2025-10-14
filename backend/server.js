@@ -15,29 +15,31 @@ const app = express();
 
 // CORS configuration (production-ready)
 // Allowed origins
-
 const allowedOrigins = [
-  "https://sushi-restaurant-hylm.onrender.com",
-  "https://sushi-restaurant-admin.onrender.com",
+  /* "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:5000", */
+  "https://sushi-restaurant-hylm.onrender.com", // User frontend
+  "https://sushi-restaurant-admin.onrender.com", // Admin frontend
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin (like Postman)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        var msg =
-          "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("CORS not allowed for this origin"));
       }
-      return callback(null, true);
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+// Handle preflight requests for all routes
+app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
