@@ -7,8 +7,8 @@ Includes features like user authentication, reservation system, cart and orderin
 
 ## 🌐 Live Demo
 
-- Frontend: [Sushi Restaurant Live](https://sushi-restaurant-hylm.onrender.com)  
-- Backend API: [Sushi Restaurant API](https://sushi-restaurant-m6oe.onrender.com)  
+- Frontend: [Sushi Restaurant Frontend](https://sushi-restaurant-hylm.onrender.com)  
+- Admin : [Sushi Restaurant Admin](https://sushi-restaurant-admin.onrender.com)  
 
 ---
 
