@@ -15,35 +15,32 @@ const app = express();
 
 // CORS configuration (production-ready)
 // Allowed origins
+
 const allowedOrigins = [
-  /* "http://localhost:5173",
-  "http://localhost:5174",
-  "http://localhost:5000", */
-  "https://sushi-restaurant-hylm.onrender.com", // frontend URL
-  "https://sushi-restaurant-admin.onrender.com", // admin URL
-  "https://sushi-restaurant-m6oe.onrender.com", // backend URL
+  "https://sushi-restaurant-hylm.onrender.com",
+  "https://sushi-restaurant-admin.onrender.com",
 ];
 
-// Middleware to handle CORS
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // allow requests with no origin (like Postman, server-to-server)
+    origin: function (origin, callback) {
+      // allow requests with no origin (like Postman)
       if (!origin) return callback(null, true);
-
-      // check if the origin is in our allowed list
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        var msg =
+          "The CORS policy for this site does not allow access from the specified Origin.";
+        return callback(new Error(msg), false);
       }
-
-      // origin not allowed
-      return callback(new Error("CORS policy: This origin is not allowed."));
+      return callback(null, true);
     },
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+app.options("*", cors()); // enable preflight for all routes
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
