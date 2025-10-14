@@ -82,7 +82,7 @@ router.post("/forgotpassword", async (req, res) => {
     await admin.save();
 
     // Create resend link
-    const resetLink = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
+    const resetLink = `${process.env.ADMIN_URL}/resetpassword/${resetToken}`;
 
     // Send email
     const transporter = nodemailer.createTransport({
