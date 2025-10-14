@@ -15,10 +15,13 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  /* "http://localhost:5173",
+  origin: [
+    /* "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:5000", */
-  origin: "*",
+    "https://sushi-restaurant-m6oe.onrender.com",
+    "https://sushi-restaurant-admin.onrender.com",
+  ],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
